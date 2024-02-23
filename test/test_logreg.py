@@ -32,7 +32,7 @@ def test_loss_function():
 	log_model = logreg.LogisticRegressor(num_feats=6, learning_rate=0.05, tol=0.0000001, max_iter=100, batch_size=5)
 	y_true = np.array([0,0,0,1,1,1])
 	y_pred = np.array([0.1,0.2,0.05,0.9,0.9,0.7])
-	assert round(log_model.loss_function(y_true, y_pred)[0], 5) == 0.15787
+	assert round(log_model.loss_function(y_true, y_pred), 5) == 0.15787
 
 
 def test_gradient():
