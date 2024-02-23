@@ -30,7 +30,9 @@ def test_loss_function():
 	Creates an instance of the LogisticRegressor class and tests that the loss_function() method returns the correct value for an arbitrary sequence of labels and predictions.
 	"""
 	log_model = logreg.LogisticRegressor(num_feats=6, learning_rate=0.05, tol=0.0000001, max_iter=100, batch_size=5)
-	assert round(log_model.loss_function([0,0,0,1,1,1], [0.1,0.2,0.05,0.9,0.9,0.7])[0], 5) == 0.15787
+	y_true = np.array([0,0,0,1,1,1])
+	y_pred = np.array([0.1,0.2,0.05,0.9,0.9,0.7])
+	assert round(log_model.loss_function(y_true, y_pred)[0], 5) == 0.15787
 
 
 def test_gradient():
@@ -66,4 +68,4 @@ def test_training():
 	log_model = logreg.LogisticRegressor(num_feats=6, learning_rate=0.05, tol=0.0000001, max_iter=100, batch_size=5)
 	log_model.train_model(X_train, y_train, X_val, y_val)
 	
-	assert len(np.array(log_model.loss_hist_train).unique) > 1
+	assert len(set(log_model.loss_hist_train)) > 1
